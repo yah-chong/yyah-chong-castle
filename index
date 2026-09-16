@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 關卡解鎖：阿忠的山寨</title>
+    <!-- 載入像素風 Google 字型 -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+TC:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #0f051d;
+            color: #00ffcc;
+            font-family: 'Noto Sans TC', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .arcade-card {
+            background: #1a0933;
+            border: 4px solid #ff007f;
+            box-shadow: 0 0 20px #ff007f, inset 0 0 15px rgba(255, 0, 127, 0.5);
+            border-radius: 12px;
+            padding: 30px 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+        .pixel-header {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 14px;
+            color: #ffe600;
+            text-shadow: 2px 2px #ff0055;
+            margin-bottom: 15px;
+            animation: blink 1.2s infinite;
+        }
+        h1 {
+            font-size: 26px;
+            color: #ffffff;
+            text-shadow: 3px 3px 0px #ff007f;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .status-box {
+            background: #090214;
+            border: 2px dashed #00ffcc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e0e0e0;
+            text-align: left;
+        }
+        .highlight {
+            color: #ffe600;
+            font-weight: bold;
+        }
+        .nav-btn {
+            display: block;
+            width: 100%;
+            background: #ff007f;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 16px;
+            border: none;
+            border-bottom: 5px solid #99004d;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.4);
+            transition: all 0.1s ease;
+            margin-bottom: 12px;
+        }
+        .nav-btn:active {
+            transform: translateY(4px);
+            border-bottom: 1px solid #99004d;
+        }
+        .call-btn {
+            display: block;
+            width: 100%;
+            background: #00cc88;
+            color: #0d041a;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 14px;
+            border: none;
+            border-bottom: 4px solid #008855;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 204, 136, 0.3);
+            margin-bottom: 12px;
+        }
+        .call-btn:active {
+            transform: translateY(3px);
+            border-bottom: 1px solid #008855;
+        }
+        .copy-btn {
+            background: transparent;
+            color: #00ffcc;
+            border: 2px solid #00ffcc;
+            padding: 10px;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .copy-btn:active {
+            background: rgba(0, 255, 204, 0.2);
+        }
+        .footer-text {
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="arcade-card">
+    <div class="pixel-header">STAGE 1: UNLOCKED</div>
+    <h1>🏰 阿忠的山寨</h1>
+    
+    <div class="status-box">
+        <p>🎮 <b>任務名稱：</b>解鎖秘密據點</p>
+        <p>📍 <b>加密座標：</b><span class="highlight">22.945833, 120.539106</span></p>
+        <p>🅿️ <b>特別裝備：</b>山寨備有專屬停車場！</p>
+        <p>📞 <b>寨主專線：</b><span class="highlight">098-353-1235</span></p>
+    </div>
+
+    <!-- 導航按鈕 -->
+    <button class="nav-btn" onclick="startNavigation()">🚀 PRESS START 啟動導航</button>
+
+    <!-- 一鍵撥打電話按鈕 -->
+    <a href="tel:0983531235" class="call-btn">📞 一鍵呼叫寨主阿忠</a>
+    
+    <!-- 複製座標按鈕 -->
+    <button class="copy-btn" onclick="copyCoordinates()">📋 複製山寨加密座標</button>
+
+    <div class="footer-text">PLAYER 1 READY • 寨主已準備熱情接待</div>
+</div>
+
+<script>
+    const lat = 22.945833;
+    const lng = 120.539106;
+
+    function startNavigation() {
+        // 判斷是否為 iOS 裝置 (iPhone/iPad)
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        
+        if (isIOS) {
+            // 自動開啟 Apple Maps 導航
+            window.location.href = `maps://maps.apple.com/?daddr=${lat},${lng}&dirflg=d`;
+        } else {
+            // 其他裝置自動開啟 Google Maps 導航
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`, '_blank');
+        }
+    }
+
+    function copyCoordinates() {
+        const textToCopy = `${lat}, ${lng}`;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert("✨ 山寨加密座標已複製成功！");
+        }).catch(err => {
+            alert("座標複製失敗，請手動複製：" + textToCopy);
+        });
+    }
+</script>
+
+</body>
+</html>
